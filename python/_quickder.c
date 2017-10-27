@@ -190,7 +190,13 @@ static PyMethodDef der_methods [] = {
 };
 
 
-PyMODINIT_FUNC init_quickder () {
+PyMODINIT_FUNC
+#if PY_MAJOR_VERSION >= 3
+PyInit_quickder (void)
+#else
+init_quickder (void)
+#endif
+{
 	PyObject *mod;
 	mod = Py_InitModule ("_quickder", der_methods);
 	if (mod == NULL) {
